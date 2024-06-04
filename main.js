@@ -59,3 +59,30 @@ buttonPress(13, () => {
 buttonPress(14, () => {
   this_variable_is_not_defined;
 });
+
+// calculate math function from the user's input, using try/catch
+function solve(firstNum, operator, secondNum) {
+  try {
+    isNumber(firstNum);
+    isNumber(secondNum);
+
+    return eval(`${firstNum} ${operator} ${secondNum}`);
+  } catch (error) {
+    console.error();
+    return null;
+  }
+}
+
+// validate that the input is a number, using throw
+function isNumber(input) {
+  if (isNaN(input) || input === Infinity) {
+    throw new ValidationError("Invalid input: ${input}");
+  }
+}
+
+class CustomError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "CustomError";
+  }
+}
