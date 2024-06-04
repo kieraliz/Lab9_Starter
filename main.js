@@ -51,13 +51,13 @@ buttonPress(11, () => {
   console.time("Start Timer");
 });
 buttonPress(12, () => {
-  console.timeEnd("End Timer");
+  console.timeEnd("Start Timer");
 });
 buttonPress(13, () => {
   console.trace();
 });
 buttonPress(14, () => {
-  this_variable_is_not_defined;
+  is_not_defined;
 });
 
 // calculate math function from the user's input, using try/catch
@@ -76,13 +76,21 @@ function solve(firstNum, operator, secondNum) {
 // validate that the input is a number, using throw
 function isNumber(input) {
   if (isNaN(input) || input === Infinity) {
-    throw new ValidationError("Invalid input: ${input}");
+    throw new CustomError("Invalid input: ${input}");
   }
 }
 
+// custom error
 class CustomError extends Error {
   constructor(message) {
     super(message);
     this.name = "CustomError";
   }
 }
+
+// global error handler error message
+window.addEventListener("error", (e) => {
+  console.warn("Global Error Handler: ${e.message}");
+});
+
+TrackJS.track("Testing TrackJS!");
